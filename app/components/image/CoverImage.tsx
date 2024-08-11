@@ -7,7 +7,7 @@ interface Props {
   useModal?: boolean;
 }
 
-const CoverImage: React.FC<Props> = ({ src, alt, openImageModal, useModal }) => {
+const CoverImage: React.FC<Props> = ({ src, alt = 'image', openImageModal, useModal }) => {
   const handleClick = () => {
     if (useModal && openImageModal) {
       openImageModal(src);

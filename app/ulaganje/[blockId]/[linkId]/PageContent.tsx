@@ -20,10 +20,6 @@ const PageContent: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState('');
   const marginLeftSmall = '2vw';
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const openImageModal = (image: string) => {
     setSelectedImage(image);
     setIsImageModalOpen(true);

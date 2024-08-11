@@ -1,33 +1,41 @@
 'use client';
-import React, { useEffect } from 'react';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import { contentData } from './ulaganjeData';
-import ContentBlock from './ContentBlock';
+import { contentData, mapIdToPath } from './ulaganjeData';
+import ContentBlock from '../components/blocks/ContentBlock';
 import H1 from '../components/text/H1';
 import PageContainer from '../components/containers/PageContainer';
+import renderGridSystem from '@/app/helpers/renderGridSystem';
+import useScrollToTop from '../helpers/useScrollToTop';
+import useResponsiveColumns from '../helpers/useResponsiveColumns';
+import ContentDescriptionText from '../components/text/ContentDescriptionText';
 
-const InvestContent: NextPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+const InvestContent: React.FC = () => {
+  useScrollToTop();
+  const columns = useResponsiveColumns(1);
 
   return (
     <PageContainer>
-      <H1 title='MOGUĆNOST ULAGANJA' />
-
-      <div className='lg:grid lg:grid-cols-3 lg:gap-8 rounded-md overflow-hidden'>
-        {contentData.map((block) => (
-          <Link key={block.id} href={`/ulaganje/${block.id}`}>
+      <H1 title='ULAGANJE U INFOTRG' pb='2rem' />
+      <ContentDescriptionText
+        text='Infotrgov investicioni program omogućava svakom fizičkom licu sticanje vlasničkog udela u poslovnom projektu, uz minimalnu mesečnu zaradu od 10% na uložena sredstva i garanciju povrata uloženog novca u slučaju raskida suvlasničkog odnosa.'
+        align='center'
+        color='black'
+      />
+      <div className='bg-white sm:bg-transparent rounded-md overflow-hidden mb-4'>
+        {renderGridSystem({
+          contentData,
+          columns: columns,
+          useLink: true,
+          mapIdToPath: (id: string) => mapIdToPath(id),
+          children: (block) => (
             <ContentBlock
               title={block.title}
-              description={block.description}
+              description={block.description || ''}
               coverImage={block.coverImage}
               contentBlocks={[]}
               openContentModal={() => {}}
             />
-          </Link>
-        ))}
+          ),
+        })}
       </div>
     </PageContainer>
   );

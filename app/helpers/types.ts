@@ -14,11 +14,15 @@ export interface Subitem {
 export interface BasicInformation {
   id: string;
   title: string;
-  description: string;
+  description?: string;
   coverImage?: string;
   date?: string;
   name?: string;
   content?: any[];
+  isLink?: boolean;
+  opisPosla?: string[];
+  usloviRada?: string[];
+  potrebneKvalifikacije?: string[];
 }
 
 export interface BasicTimInformation {
@@ -53,8 +57,14 @@ export interface ContentBlockItem {
     | 'p'
     | 'hr'
     | 'listEvenly'
+    | 'TextBoldList'
+    | 'TextBoldCustom'
+    | 'h3Block'
+    | 'plus'
     | 'pNormal';
   content?: string;
+  label?: string;
+  value?: string;
   url?: string | string[];
   image?: string[];
   items?: ContentBlockItem[];
@@ -74,6 +84,8 @@ export interface ContentBlockItem {
   marginY?: string;
   color?: string;
   height?: number;
+  link?: string;
+  bullet?: string;
   circleContent?: {
     realizator: string;
     period: string;
@@ -81,6 +93,10 @@ export interface ContentBlockItem {
     angažman: string;
     fond: string;
   };
+  opisPosla?: string[];
+  usloviRada?: string[];
+  potrebneKvalifikacije?: string[];
+  paddingTop?: string | number;
   owner?:
     | 'autor'
     | 'administrator'
@@ -104,14 +120,15 @@ export interface Route {
 
 export interface MemberData {
   id: string;
+  title?: string;
   name: string;
-  birth: string;
-  profession: string;
-  affinities: string;
-  previousEngagements: string;
+  birth?: string;
+  profession?: string;
+  affinities?: string;
+  previousEngagements?: string;
   infotrgEngagements: string;
   phone: string;
-  email: string;
+  email?: string;
   image: string;
 }
 
@@ -140,4 +157,15 @@ export interface PppLinksData {
   id: string;
   label: string;
   amount: string;
+}
+
+export interface ImageBlockLink {
+  description: string;
+  coverImage?: string;
+  isLink?: boolean;
+  link?: string;
+}
+
+export interface ImageBlockLinkData {
+  [key: string]: ImageBlockLink[];
 }

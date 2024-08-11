@@ -1,39 +1,18 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { contentData as rawContentData } from './serviceActivitiesData';
-import ContentBlock from './ContentBlock';
+import { contentData as rawContentData, mapIdToPath } from './serviceActivitiesData';
+import ContentBlock from '../../components/blocks/ContentBlock';
 import H1 from '../../components/text/H1';
 import PageContainer from '../../components/containers/PageContainer';
 import renderGridSystem from '@/app/helpers/renderGridSystem';
 import { BasicInformation } from '@/app/helpers/types';
+import useScrollToTop from '@/app/helpers/useScrollToTop';
+import useResponsiveColumns from '@/app/helpers/useResponsiveColumns';
+import H2 from '@/app/components/text/H2';
+import ContentDescriptionText from '@/app/components/text/ContentDescriptionText';
 
 const ServiceActivities: React.FC = () => {
-  const [columns, setColumns] = useState<number | null>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const updateColumns = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) {
-        setColumns(3);
-      } else if (width >= 1024) {
-        setColumns(2);
-      } else if (width >= 768) {
-        setColumns(2);
-      } else {
-        setColumns(1);
-      }
-    };
-
-    updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
-  }, []);
-
-  if (columns === null) return null;
+  useScrollToTop();
+  const columns = useResponsiveColumns(1);
 
   const contentData = rawContentData.filter(
     (item): item is BasicInformation & { id: string; coverImage: string } =>
@@ -43,16 +22,21 @@ const ServiceActivities: React.FC = () => {
   return (
     <PageContainer>
       <H1 title='USLUŽNE DELATNOSTI INFOTRGA' />
+      <ContentDescriptionText
+        text='U cilju što boljeg povezivanja kupaca i prodavaca i ostvarivanja efikasnije trgovine, poslovno delovanje Infotrga se odvija kroz osam uslužnih delatnosti.'
+        align='center'
+        color='black'
+      />
       <div className='bg-white sm:bg-transparent rounded-md overflow-hidden mb-4'>
         {renderGridSystem({
           contentData,
           columns: columns,
           useLink: true,
-          path: '/o-nama/usluzne-delatnosti/',
+          mapIdToPath: (id: string) => mapIdToPath(id),
           children: (block) => (
             <ContentBlock
               title={block.title}
-              description={block.description}
+              description={block.description || ''}
               coverImage={block.coverImage}
               contentBlocks={[]}
               openContentModal={() => {}}

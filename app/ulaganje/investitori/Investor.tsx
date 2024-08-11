@@ -1,5 +1,7 @@
 import React from 'react';
-import { invested, withdrawn } from './investorsData';
+import { invested } from './investorsData';
+import H2 from '@/app/components/text/H2';
+import BlockTitle from '@/app/components/text/BlockTitle';
 
 interface Props {
   id: string;
@@ -9,23 +11,34 @@ interface Props {
 
 const Investor: React.FC<Props> = ({ id, name, view }) => {
   const investments = invested[id] || [];
-  const withdrawals = withdrawn[id] || [];
 
-  const totalInvestment = investments
-    .reduce((sum, investment) => sum + parseFloat(investment.amount.replace(',', '.')), 0)
-    .toFixed(2);
+  const roundUp = (num: number, precision: number): number => {
+    const factor = Math.pow(10, precision);
+    return Math.ceil(num * factor) / factor;
+  };
+
+  const totalInvestment = roundUp(
+    investments.reduce(
+      (sum, investment) => sum + parseFloat(investment.amount.replace(',', '.')),
+      0,
+    ),
+    2,
+  ).toFixed(2);
+
   const totalShare =
-    investments
-      .reduce((sum, investment) => sum + parseFloat(investment.share.replace(',', '.')), 0)
-      .toFixed(2) + '%';
+    roundUp(
+      investments.reduce(
+        (sum, investment) => sum + parseFloat(investment.share.replace(',', '.')),
+        0,
+      ),
+      2,
+    ).toFixed(2) + '%';
 
   return (
     <div>
       {view === 'investment' ? (
         <div>
-          <h2 className='text-2xl font-semibold mb-4 text-center text-black uppercase'>
-            Ulaganje finansija
-          </h2>
+          <BlockTitle text='ULAGANJE FINASIJA' bgColor='yellowLighter' align='center' />
           <div className='flex flex-col gap-4'>
             <div className='mt-4'>
               <p className='text-lg text-black'>
@@ -72,9 +85,7 @@ const Investor: React.FC<Props> = ({ id, name, view }) => {
         </div>
       ) : (
         <div>
-          <h2 className='text-2xl font-semibold mb-4 text-center text-black uppercase'>
-            Povlačenje finansija
-          </h2>
+          <BlockTitle text='POVLAČENJE FINASIJA' bgColor='yellowLighter' align='center' />
           <p className='text-lg text-black'>
             <strong>Ukupno:</strong> 0 EUR 0.00%
           </p>

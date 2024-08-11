@@ -1,3 +1,4 @@
+import React from 'react';
 import Main from './components/layout/Main';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
@@ -6,6 +7,7 @@ import Breadcrumb from './components/layout/Breadcrumb';
 import { SidebarProvider } from './context/SidebarContext';
 import { Providers } from './globalRedux/provider';
 import '../styles/globals.css';
+import ScrollRestoration from './helpers/useScrollRestoration';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,6 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </div>
           <Footer />
         </SidebarProvider>
+        <ScrollRestoration />
       </body>
     </html>
   );

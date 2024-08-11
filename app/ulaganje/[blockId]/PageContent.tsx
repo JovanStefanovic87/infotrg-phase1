@@ -12,14 +12,15 @@ import H2 from '@/app/components/text/H2';
 import TextNormal from '@/app/components/text/TextNormal';
 import Devider2 from '@/app/components/ui/Devider2';
 import H3 from '@/app/components/text/H3';
+import H4 from '@/app/components/text/H4';
+import H3Title from '@/app/components/text/H3Title';
+import TextBoldList from '@/app/components/text/TextBoldList';
+import TextBoldCustom from '@/app/components/text/TextBoldCustom';
 
 const PageContent: React.FC = () => {
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const maxWidth = `calc(100vw - ${50}px)`;
 
   const openImageModal = (image: string) => {
     setSelectedImage(image);
@@ -44,7 +45,7 @@ const PageContent: React.FC = () => {
       <div className='relative pt-6 bg-gradient-white shadow-md rounded-lg p-4'>
         {contentBlocks.length > 0 &&
           contentBlocks.map((block: any, index: number) => (
-            <div key={index}>
+            <div key={index} style={{ maxWidth: maxWidth }}>
               {block.type === 'text' ? (
                 <TextWrapped block={block.content || ''} />
               ) : block.type === 'image' ? (
@@ -75,15 +76,43 @@ const PageContent: React.FC = () => {
                 <H2 text={block.content} align='center' color='black' />
               ) : block.type === 'h3' ? (
                 <H3 text={block.content} align='center' />
+              ) : block.type === 'h3Block' ? (
+                <div className='flex items-center justify-center bg-blueMain rounded-lg p-4'>
+                  <H3Title text={block.content} color='white' />
+                </div>
+              ) : block.type === 'plus' ? (
+                <div className='flex items-center justify-center text-blueMain text-4xl'>+</div>
+              ) : block.type === 'h4' ? (
+                <H4
+                  text={block.content}
+                  align='left'
+                  paddingTop={block.paddingTop}
+                  paddingBottom={6}
+                />
               ) : block.type === 'pNormal' ? (
                 <TextNormal
                   text={block.content}
                   weight={block.weight}
                   paddingLeft={block.paddingLeft}
+                  paddingTop={block.paddingTop}
                   align={block.align}
+                  link={block.link}
                 />
               ) : block.type === 'H2BoldCenter' ? (
                 <H2 text={block.content} weight='bold' align='center' color='black' />
+              ) : block.type === 'TextBoldList' ? (
+                <TextBoldList
+                  bullet={block.bullet}
+                  content={block.content}
+                  paddingLeft={block.paddingLeft}
+                />
+              ) : block.type === 'TextBoldCustom' ? (
+                <TextBoldCustom
+                  label={block.label}
+                  content={block.content}
+                  paddingLeft={block.paddingLeft}
+                  paddingTop={block.paddingTop}
+                />
               ) : null}
             </div>
           ))}

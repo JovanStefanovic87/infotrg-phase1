@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { contentData, contentBlocksData, contentBlocks2Data } from './memebrs';
 import ImageModal from '../../../components/modals/ImageModal';
@@ -15,7 +15,7 @@ import TextNormal from '@/app/components/text/TextNormal';
 import Devider2 from '@/app/components/ui/Devider2';
 import Image from 'next/image';
 import TextSpecifications from '@/app/components/text/TextSpecifications';
-import { ContentBlocksData, MemberData } from '@/app/helpers/types';
+import useScrollToTop from '@/app/helpers/useScrollToTop';
 
 interface Props {
   [key: string]: string;
@@ -27,11 +27,22 @@ interface ContentTitleProps {
 }
 
 const ContentTitle: React.FC<ContentTitleProps> = ({ keyName, type }) => {
+  useScrollToTop();
   const getTitleText = () => {
+    const nameMap: { [key: string]: string } = {
+      autor: 'autora',
+      administrator: 'administratora',
+      vebmaster: 'vebmastera',
+      koordinator: 'koordinatora',
+      'graficki-dizajner': 'grafičkog dizajnera',
+      'pr-menadzer': 'pr menadžera',
+      'marketing-menadzer': 'marketing menadžera',
+    };
+    const name = nameMap[keyName] || keyName;
     if (type === 'maintain') {
-      return `ZADUŽENJA ${keyName.toUpperCase()}A NA ODRŽAVANJU I UNAPREĐIVANJU INFOTRGA`;
+      return `ZADUŽENJA ${name.toUpperCase()} NA ODRŽAVANJU I UNAPREĐIVANJU INFOTRGA`;
     } else if (type === 'service') {
-      return `ZADUŽENJA ${keyName.toUpperCase()}A U OKVIRU USLUŽNIH DELATNOSTI INFOTRGA`;
+      return `ZADUŽENJA ${name.toUpperCase()} U OKVIRU USLUŽNIH DELATNOSTI INFOTRGA`;
     }
     return '';
   };
@@ -90,14 +101,10 @@ const PageContent: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const openImageModal = (image: string) => {
+  /* const openImageModal = (image: string) => {
     setSelectedImage(image);
     setIsImageModalOpen(true);
-  };
+  }; */
 
   const closeImageModal = () => {
     setIsImageModalOpen(false);
@@ -117,10 +124,10 @@ const PageContent: React.FC = () => {
       <H1 title='INFOTRG TIM' pb='0' />
       <div className='relative pt-2 bg-gradient-white shadow-md rounded-lg p-4 mt-8'>
         <div className='flex flex-col'>
-          <H2 text={block.id.toUpperCase()} align='center' color={'black'} />
+          {block.title && <H2 text={block.title.toUpperCase()} align='center' color={'black'} />}
           <div className='flex flex-col lg:flex-row justify-center items-center gap-8'>
             <div
-              className={`relative mt-4 flex items-center justify-center h-52 w-52 lg:h-120 lg:w-120 cursor-pointer p-4`}
+              className={`relative mt-4 flex items-center justify-center h-52 w-52 lg:h-120 lg:w-120 p-4`}
             >
               <Image
                 src={block.image}

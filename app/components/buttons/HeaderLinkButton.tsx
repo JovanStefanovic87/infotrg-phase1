@@ -73,7 +73,7 @@ const HeaderLinkButton: React.FC<Props> = ({
   };
 
   const className = `relative ${isTopLevel ? 'flex' : 'inline-block'} ${
-    checkIsActive(href, subRoutes) ? 'text-yellowLighter' : 'text-gray-300'
+    checkIsActive(href, subRoutes) ? 'text-yellowLighter' : 'text-blueLightest'
   } `;
 
   return (

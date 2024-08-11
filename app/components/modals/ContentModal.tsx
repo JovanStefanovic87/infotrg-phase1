@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ImageModal from './ImageModal';
-import { ContentBlockItem, BasicInformation } from '../../helpers/types';
+import { ContentBlockItem } from '../../helpers/types';
 import ContentModalContainer from '../containers/ContentModalContainer';
 import TitleMain from '../text/H2';
 import ImageBlock from '../image/ImageBlock';
@@ -45,7 +45,15 @@ const ContentModal: React.FC<Props> = ({ title, contentBlocks, onContentModalClo
           <TitleMain text={title} />
           <div className='relative z-40 pt-6'>
             {contentBlocks.map((block, index) => (
-              <div key={index} className='mb-6' onClick={() => openContentModal(block.content)}>
+              <div
+                key={index}
+                className='mb-6'
+                onClick={() => {
+                  if (Array.isArray(block.content)) {
+                    openContentModal(block.content);
+                  }
+                }}
+              >
                 {block.type === 'image' ? (
                   Array.isArray(block.content) ? (
                     block.content.map((image, imgIndex) => (

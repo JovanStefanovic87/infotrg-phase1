@@ -18,13 +18,17 @@ const Breadcrumb: React.FC = () => {
   const [breadcrumbPath, setBreadcrumbPath] = useState<{ href: string; label: string }[]>([]);
 
   useEffect(() => {
-    const pathSegments = currentPath.split('/').filter(Boolean);
-    const pathArray = pathSegments.map((segment, index) => {
-      const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
-      const label = capitalize(segment.replace(/-/g, ' '));
-      return { href, label };
-    });
-    setBreadcrumbPath([{ href: '/', label: 'Početna' }, ...pathArray]);
+    if (currentPath === '/') {
+      setBreadcrumbPath([]);
+    } else {
+      const pathSegments = currentPath.split('/').filter(Boolean);
+      const pathArray = pathSegments.map((segment, index) => {
+        const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
+        const label = capitalize(segment.replace(/-/g, ' '));
+        return { href, label };
+      });
+      setBreadcrumbPath([{ href: '/', label: 'Početna' }, ...pathArray]);
+    }
   }, [currentPath]);
 
   if (breadcrumbPath.length === 0) {

@@ -5,7 +5,7 @@ export const vebIzlogData: BasicInformation[] = [
     id: 'vebIzlogData-01',
     title: 'Šta je veb izlog?',
     description:
-      'Veb izlog je personalni prostor Infotrg platforme na kojem prodavac može izlagati svoje proizvode.',
+      'Veb izlog je personalni prostor Infotrg platforme u kojem prodavac može izlagati svoje proizvode.',
     coverImage: '/images/platform/PL01.jpg',
     content: [
       {
@@ -439,7 +439,7 @@ export const gdeDaKupimData: BasicInformation[] = [
       {
         type: 'pNormal',
         content:
-          'Kada odabere jedan preglednik, korisnik se lako može prebaciti na drugi preglednik putem glavnog menija gde se nalaze sve tri ponuđene varijante preglednika, ili putem direktne prečice koja se nalazi odmah iznad rezultata pretrage.',
+          'Nakon što je odabrao jedan preglednik, korisnik se lako može prebaciti na drugi preglednik putem glavnog menija gde se nalaze sve tri ponuđene varijante preglednika, ili putem direktne prečice koja se nalazi odmah iznad rezultata pretrage.',
       },
     ],
   },

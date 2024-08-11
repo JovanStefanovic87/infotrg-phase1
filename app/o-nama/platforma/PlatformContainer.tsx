@@ -47,7 +47,7 @@ const PlatformContainer: NextPage = () => {
       <H1 title='INFOTRG PLATFORMA' pb='24px' />
       <div className='flex flex-col items-center bg-mainWhite rounded-lg p-6 shadow-lg'>
         <H2
-          text='Infotrg platforma je specijalizovani elektronski servis za oglašavanje proizvoda. Platforma raspolaže sa tri osnovne korisničke funkcije:'
+          text='Platforma raspolaže sa tri osnovne korisničke funkcije:'
           align='center'
           color='black'
         />

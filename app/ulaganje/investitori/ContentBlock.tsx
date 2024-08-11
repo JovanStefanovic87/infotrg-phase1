@@ -41,18 +41,20 @@ const ContentBlock: React.FC<Props> = ({
             </div>
             <div className='flex flex-wrap justify-around'>
               <Devider2 marginY={4} height={2} />
-              <button
-                onClick={() => onOpenModal('investment', { id, name })}
-                className='text-blue-500 text-xs sm:text-sm lg:text-xs xl:text-sm mt-2 border border-blueLight bg-blueLightest px-2  xl:px-4 py-2 rounded-md'
-              >
-                Ulaganje finansija
-              </button>
-              <button
-                onClick={() => onOpenModal('withdrawal', { id, name })}
-                className='text-blue-500 text-xs sm:text-sm lg:text-xs xl:text-sm mt-2 border border-blueLight bg-blueLightest px-2 xl:px-4 py-2 rounded-md'
-              >
-                Povlačenje finansija
-              </button>
+              <div className='flex gap-2 justify-between'>
+                <button
+                  onClick={() => onOpenModal('investment', { id, name })}
+                  className='text-blue-500 text-base mt-2 border border-blueLight bg-blueLightest px-2  xl:px-4 py-2 rounded-md'
+                >
+                  Ulaganje finansija
+                </button>
+                <button
+                  onClick={() => onOpenModal('withdrawal', { id, name })}
+                  className='text-blue-500 text-base mt-2 border border-blueLight bg-blueLightest px-2 xl:px-4 py-2 rounded-md'
+                >
+                  Povlačenje finansija
+                </button>
+              </div>
             </div>
           </div>
         </div>

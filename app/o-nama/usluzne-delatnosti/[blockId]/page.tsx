@@ -2,8 +2,8 @@ import { NextPage } from 'next';
 import PageContent from './PageContent';
 
 export const metadata = {
-  title: 'Infotrg | Opširniji prikaz poslovne saradnje',
-  description: 'Detalji poslovne saranje sa Infotrg-om',
+  title: 'Infotrg | Usužne delatnosti',
+  description: 'Detalji o uslužnim delatnostima kompanije Infotrg.',
 };
 
 const Invest: NextPage = () => {

@@ -13,7 +13,7 @@ const TextNormalWrapped: React.FC<Props> = ({
 }) => {
   return (
     <p
-      className={`text-${align} text-pretty font-${weight} text-grayDarkest text-xs md:text-sm lg:text-base leading-relaxed`}
+      className={`text-${align} text-pretty font-${weight} text-grayDarkest text-sm md:text-sm lg:text-base leading-relaxed`}
       style={{ paddingLeft }}
     >
       {children}

@@ -8,6 +8,7 @@ interface Props {
   paddingTop?: number;
   weight?: 'normal' | 'bold' | 'semibold';
   color?: string;
+  wrap?: boolean;
 }
 
 const H4: React.FC<Props> = ({
@@ -18,13 +19,16 @@ const H4: React.FC<Props> = ({
   paddingTop = 0,
   weight = 'semibold',
   color = 'black',
+  wrap = false,
 }) => {
   const maxWidth = `calc(100% - ${2 * padding}px)`;
 
   return (
     <div>
       <h4
-        className={`text-xs sm:text-base text-${color} text-wrap font-${weight} text-${align} overflow-hidden whitespace-nowrap`}
+        className={`text-base text-${color} text-wrap font-${weight} text-${align} overflow-hidden ${
+          wrap ? '' : 'whitespace-nowrap'
+        }`}
         style={{ maxWidth, paddingBottom, paddingTop }}
       >
         {text}

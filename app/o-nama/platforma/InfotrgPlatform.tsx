@@ -1,8 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import ContentBlock from './ContentBlock';
+import ContentBlockWithModal from '@/app/components/blocks/ContentBlockWithModal';
 import H2Title from '@/app/components/text/H2Title';
 import renderGridSystem from '@/app/helpers/renderGridSystem';
+import useScrollToTop from '@/app/helpers/useScrollToTop';
+import useResponsiveColumns from '@/app/helpers/useResponsiveColumns';
 
 interface Props {
   contentData: any[];
@@ -11,32 +12,8 @@ interface Props {
 }
 
 const InfotrgPlatform: React.FC<Props> = ({ contentData, title, id }) => {
-  const [columns, setColumns] = useState<number | null>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const updateColumns = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) {
-        setColumns(3);
-      } else if (width >= 1024) {
-        setColumns(2);
-      } else if (width >= 768) {
-        setColumns(2);
-      } else {
-        setColumns(1);
-      }
-    };
-
-    updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
-  }, []);
-
-  if (columns === null) return null;
+  useScrollToTop();
+  const columns = useResponsiveColumns(1);
 
   return (
     <div className='mt-4' id={id}>
@@ -49,9 +26,9 @@ const InfotrgPlatform: React.FC<Props> = ({ contentData, title, id }) => {
           columns: columns,
           useLink: false,
           children: (block) => (
-            <ContentBlock
+            <ContentBlockWithModal
               title={block.title}
-              description={block.description}
+              description={block.description || ''}
               coverImage={block.coverImage}
               contentBlocks={[]}
               openContentModal={() => {}}

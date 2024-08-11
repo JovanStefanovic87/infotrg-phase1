@@ -3,7 +3,7 @@ import TimContent from './TimContent';
 
 export const metadata = {
   title: 'Infotrg | Tim',
-  description: 'Infotrg tim',
+  description: 'Saznajte više o članovima infotrg tima.',
 };
 
 const Tim: NextPage = () => {

@@ -33,10 +33,10 @@ const activePageSlice = createSlice({
   name: 'name',
   initialState,
   reducers: {
-    toHome: state => {
+    toHome: (state) => {
       state.value = 'home';
     },
-    toKalendar: state => {
+    toKalendar: (state) => {
       state.value = 'kalendar';
     },
   },

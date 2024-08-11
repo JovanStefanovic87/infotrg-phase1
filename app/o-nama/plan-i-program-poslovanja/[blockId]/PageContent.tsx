@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { pppLinksData, contentBlocksData } from './pppData';
 import ImageModal from '../../../components/modals/ImageModal';
@@ -13,12 +13,14 @@ import H4 from '@/app/components/text/H4';
 import Text from '@/app/components/text/Text';
 import TextNormal from '@/app/components/text/TextNormal';
 import Devider2 from '@/app/components/ui/Devider2';
+import useScrollToTop from '@/app/helpers/useScrollToTop';
 
 interface Props {
   [key: string]: string;
 }
 
 const PageContent: React.FC = () => {
+  useScrollToTop();
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
 
@@ -63,10 +65,6 @@ const PageContent: React.FC = () => {
         return 'black';
     }
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const openImageModal = (image: string) => {
     setSelectedImage(image);
@@ -134,17 +132,17 @@ const PageContent: React.FC = () => {
                         return (
                           <div
                             key={idx}
-                            className={`flex flex-col items-center justify-center w-20 h-20 text-black p-2 rounded-full sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 shadow-grayLight shadow-lg border-2 border-l-blueLightest border-r-blueLightest`}
+                            className={`flex flex-col items-center justify-center w-24 h-24 text-black p-2 rounded-full lg:w-32 lg:h-32 shadow-grayLight shadow-lg border-2 border-l-blueLightest border-r-blueLightest lowercase`}
                             style={{ backgroundColor: bgColorClass }}
                           >
                             <p
-                              className='font-boldtext-xs text-xxxs sm:text-xxs md:text-xs lg:text-sm font-bold underline underline-offset-4'
+                              className='text-xxxs sm:text-xs md:text-xs lg:text-sm underline underline-offset-8'
                               style={{ color: textColorClass }}
                             >
                               {key.toLocaleUpperCase()}
                             </p>
                             <p
-                              className='text-xxxs sm:text-xxs md:text-xs lg:text-sm text-center'
+                              className='text-xxs2 md:text-xs lg:text-base text-center font-bold mt-2'
                               style={{ color: textColorClass }}
                             >
                               {value}

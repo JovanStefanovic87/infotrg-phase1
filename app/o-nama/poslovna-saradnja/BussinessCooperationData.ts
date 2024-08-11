@@ -228,8 +228,26 @@ const replaceSpecialCharacters = (text: string): string => {
     .replace(/[\u0300-\u036f]/g, '');
 };
 
-export const hyperlinks = h4Blocks.map((block) => ({
-  key: block.id,
-  text: block.text,
-  url: `/o-nama/poslovna-saradnja/${replaceSpecialCharacters(block.text)}`,
-}));
+const usluzneDelatnostiIds = new Set([
+  'prihodovanje-od-objavljivanja-reklama',
+  'prihodovanje-od-izrade-reklama',
+  'prihodovanje-od-usluznog-odrzavanja-veb-izloga',
+  'prihodovanje-od-affiliate-posrednistva',
+  'prihodovanje-od-starter-posrednistva',
+  'prihodovanje-od-aukcija',
+  'prihodovanje-od-dostave',
+  'prihodovanje-na-osnovu-odlozenog-placanja',
+]);
+
+const hyperlinks = listOfLinks.map((block) => {
+  const path = usluzneDelatnostiIds.has(block.id)
+    ? `/o-nama/usluzne-delatnosti/${replaceSpecialCharacters(block.text)}`
+    : `/o-nama/poslovna-saradnja/${replaceSpecialCharacters(block.text)}`;
+
+  return {
+    ...block,
+    link: path,
+  };
+});
+
+export { hyperlinks };

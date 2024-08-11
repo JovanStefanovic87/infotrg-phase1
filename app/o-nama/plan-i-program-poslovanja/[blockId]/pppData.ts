@@ -12,11 +12,6 @@ export const pppLinksData: PppLinksData[] = [
     amount: 'planirani fond: 7,5 EUR',
   },
   {
-    id: 'septembar-2022',
-    label: 'SEPTEMBAR 2022.',
-    amount: 'planirani fond: 7,5 EUR',
-  },
-  {
     id: 'oktobar-2022-avgust-2023',
     label: 'Oktobar 2022. - avgust 2023.',
     amount: 'planirani fond: 1.456,5 EUR',
@@ -43,7 +38,7 @@ export const pppLinksData: PppLinksData[] = [
   },
   {
     id: 'mart-2024',
-    label: 'Mart 2024.',
+    label: 'Mart - April 2024.',
     amount: 'planirani fond: 300 EUR',
   },
   {

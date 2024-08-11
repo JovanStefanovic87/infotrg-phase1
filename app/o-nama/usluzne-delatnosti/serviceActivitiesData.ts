@@ -53,3 +53,7 @@ export const contentData: BasicInformation[] = [
     coverImage: '/images/usluzne-delatnosti/UD08.png',
   },
 ];
+
+export const mapIdToPath = (id: string): string => {
+  return `/o-nama/usluzne-delatnosti/${id}`;
+};

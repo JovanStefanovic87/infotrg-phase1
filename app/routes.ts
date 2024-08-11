@@ -13,16 +13,6 @@ export const routes: Route[] = [
     icon: '/icons/about.svg',
     subRoutes: [
       {
-        label: 'Poslovna saradnja',
-        href: '/o-nama/poslovna-saradnja',
-        icon: '/icons/businessCooperation.svg',
-      },
-      {
-        label: 'Plan i program poslovanja',
-        href: '/o-nama/plan-i-program-poslovanja',
-        icon: '/icons/BusinessPlan.svg',
-      },
-      {
         label: 'Uslužne delatnosti',
         href: '/o-nama/usluzne-delatnosti',
         icon: '/icons/services.svg',
@@ -34,10 +24,20 @@ export const routes: Route[] = [
         subRoutes: [],
       },
       {
+        label: 'Plan i program poslovanja',
+        href: '/o-nama/plan-i-program-poslovanja',
+        icon: '/icons/BusinessPlan.svg',
+      },
+      {
         label: 'Tim',
         href: '/o-nama/tim',
         icon: '/icons/team.svg',
         subRoutes: [],
+      },
+      {
+        label: 'Poslovna saradnja',
+        href: '/o-nama/poslovna-saradnja',
+        icon: '/icons/businessCooperation.svg',
       },
     ],
   },
@@ -59,6 +59,12 @@ export const routes: Route[] = [
         subRoutes: [],
       },
       {
+        label: 'Prihodi od investicija',
+        href: '/ulaganje/prihodi-od-investicija',
+        icon: '/icons/investmentIncome.svg',
+        subRoutes: [],
+      },
+      {
         label: 'Investitori',
         href: '/ulaganje/investitori',
         icon: '/icons/investors.svg',
@@ -67,9 +73,15 @@ export const routes: Route[] = [
     ],
   },
   {
+    label: 'Posao',
+    href: '/posao',
+    icon: '/icons/job.svg',
+    subRoutes: [],
+  },
+  /* {
     label: 'Kontakt',
     href: '/kontakt',
     icon: '/icons/phoneMail.svg',
     subRoutes: [],
-  },
+  }, */
 ];

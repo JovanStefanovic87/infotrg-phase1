@@ -7,14 +7,14 @@ export const contentData: BasicInformation[] = [
     description:
       'Planiranje Infotrg platforme namenjene oglašavanju prodajnih objekata i proizvoda.',
     coverImage: '/images/plan-i-program-poslovanja/ppp01.jpg',
-    date: 'septembar 2022.',
+    date: 'Septembar 2022.',
   },
   {
     id: 'plan-i-program-poslovanja-02',
     title: '',
     description: 'Izrada probne platforme i njeno testiranje.',
     coverImage: '/images/plan-i-program-poslovanja/ppp02.jpg',
-    date: 'oktobar 2022. - februar 2024.',
+    date: 'Oktobar 2022. - Februar 2024.',
   },
   {
     id: 'plan-i-program-poslovanja-03',
@@ -22,7 +22,7 @@ export const contentData: BasicInformation[] = [
     description:
       'Sakupljanje finansijskih sredstava za izradu zvanične Infotrg platforme i daljeg održavanje projekta.',
     coverImage: '/images/plan-i-program-poslovanja/ppp03.jpg',
-    date: 'jul 2024. - mart 2026.',
+    date: 'Jul 2024. - Mart 2026.',
   },
   {
     id: 'plan-i-program-poslovanja-04',
@@ -30,7 +30,7 @@ export const contentData: BasicInformation[] = [
     description:
       'Uvođenje preglednika na platformi koji prikazuje gde se na subotičkom buvljaku mogu kupiti određeni proizvodi.',
     coverImage: '/images/plan-i-program-poslovanja/ppp04.jpg',
-    date: 'oktobar 2024.',
+    date: 'Oktobar 2024.',
   },
   {
     id: 'plan-i-program-poslovanja-05',
@@ -38,7 +38,7 @@ export const contentData: BasicInformation[] = [
     description:
       'Uvođenje elektronskih prodajnih objekata (veb izloga) koje prodavci mogu samostalno voditi.',
     coverImage: '/images/plan-i-program-poslovanja/ppp05.jpg',
-    date: 'mart 2025.',
+    date: 'Mart 2025.',
   },
   {
     id: 'plan-i-program-poslovanja-06',
@@ -46,14 +46,14 @@ export const contentData: BasicInformation[] = [
     description:
       'Uvođenje enciklopedije proizvoda koja nudi detaljne informacije o pojedinim artiklima koji se mogu naći u prodaji.',
     coverImage: '/images/plan-i-program-poslovanja/ppp06.jpg',
-    date: 'jul 2025.',
+    date: 'Jul 2025.',
   },
   {
     id: 'plan-i-program-poslovanja-07',
     title: '',
     description: 'Širenje funkcionalnog opsega platforme sa subotičkog buvljaka na celu Suboticu.',
     coverImage: '/images/plan-i-program-poslovanja/ppp07.jpg',
-    date: 'jul 2025.',
+    date: 'Jul 2025.',
   },
   {
     id: 'plan-i-program-poslovanja-08',
@@ -61,28 +61,28 @@ export const contentData: BasicInformation[] = [
     description:
       'Prijava platnog prometa i registracija svih poslovnih delatnosti koje se odvijaju posredstvom Infotrg platforme.',
     coverImage: '/images/plan-i-program-poslovanja/ppp08.jpg',
-    date: 'septembar 2025.',
+    date: 'Septembar 2025.',
   },
   {
     id: 'plan-i-program-poslovanja-09',
     title: '',
     description: 'Širenje zone poslovnog delovanja Infotrga sa Subotice na celu Srbiju.',
     coverImage: '/images/plan-i-program-poslovanja/ppp09.jpg',
-    date: 'oktobar 2025.',
+    date: 'Oktobar 2025.',
   },
   {
     id: 'plan-i-program-poslovanja-10',
     title: '',
     description: 'Samostalno prihodovanje Infotrga, nezavisno od investicionog fonda.',
     coverImage: '/images/plan-i-program-poslovanja/ppp10.jpg',
-    date: 'april 2026.',
+    date: 'April 2026.',
   },
   {
     id: 'plan-i-program-poslovanja-11',
     title: '',
     description: 'Širenje zone poslovnog delovanja Infotrga van granica Srbije.',
     coverImage: '/images/plan-i-program-poslovanja/ppp11.jpg',
-    date: 'april 2026.',
+    date: 'April 2026.',
   },
 ];
 
@@ -124,7 +124,7 @@ export const listOfLinks: BasicInformation[] = [
   },
   {
     id: 'mart-2024',
-    title: 'Mart 2024.',
+    title: 'Mart - April 2024.',
     description:
       'Nakon ankete, vebmaster dorađuje tehnički plan projekta na osnovu kojeg će se izrađivati zvanična platforma.',
   },
@@ -243,3 +243,7 @@ export const listOfLinks: BasicInformation[] = [
       'Marketing menadžer održava video reklamu na odabranim medijima i prati njenu posećenost. Koordinator preko posredničke mreže organizuje naplatu prihoda od oglašavanja plaćenih reklama na nivou cele Srbije.',
   },
 ];
+
+export const mapIdToPath = (id: string): string => {
+  return `/o-nama/plan-i-program-poslovanja/${id}`;
+};

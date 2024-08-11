@@ -1,39 +1,17 @@
 'use client';
-import React, { useState, useEffect } from 'react';
-import { contentData as rawContentData } from './aboutData';
-import ContentBlock from './ContentBlock';
+import { contentData as rawContentData } from './AboutData';
+import ContentBlock from '../components/blocks/ContentBlock';
 import H1 from '../components/text/H1';
 import PageContainer from '../components/containers/PageContainer';
 import renderGridSystem from '@/app/helpers/renderGridSystem';
 import { BasicInformation } from '@/app/helpers/types';
+import useScrollToTop from '../helpers/useScrollToTop';
+import useResponsiveColumns from '../helpers/useResponsiveColumns';
+import ContentDescriptionText from '../components/text/ContentDescriptionText';
 
 const AboutContent: React.FC = () => {
-  const [columns, setColumns] = useState<number | null>(null);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
-    const updateColumns = () => {
-      const width = window.innerWidth;
-      if (width >= 1280) {
-        setColumns(3);
-      } else if (width >= 1024) {
-        setColumns(2);
-      } else if (width >= 768) {
-        setColumns(2);
-      } else {
-        setColumns(1);
-      }
-    };
-
-    updateColumns();
-    window.addEventListener('resize', updateColumns);
-    return () => window.removeEventListener('resize', updateColumns);
-  }, []);
-
-  if (columns === null) return null;
+  useScrollToTop();
+  const columns = useResponsiveColumns(1);
 
   const contentData = rawContentData.filter(
     (item): item is BasicInformation & { id: string; coverImage: string } =>
@@ -43,16 +21,20 @@ const AboutContent: React.FC = () => {
   return (
     <PageContainer>
       <H1 title='O NAMA' />
+      {/* <ContentDescriptionText
+        text='Infotrg platforma je elektronski medij za pretragu proizvoda i njihovih lokacija prodaje, iznajmljivanje i uređivanje personalnih elektronskih prodavnica (veb izloga), kao i za objavljivanje i uređivanje zasebnih članaka o pojedinačnim proizvodima.'
+        align='center'
+        color='black'
+      /> */}
       <div className='bg-white sm:bg-transparent rounded-md overflow-hidden mb-4'>
         {renderGridSystem({
           contentData,
           columns: columns,
           useLink: true,
-          path: '/o-nama/',
           children: (block) => (
             <ContentBlock
               title={block.title}
-              description={block.description}
+              description={block.description || ''}
               coverImage={block.coverImage}
               contentBlocks={[]}
               openContentModal={() => {}}
