@@ -1,5 +1,5 @@
 'use client';
-import { contentData as rawContentData } from './AboutData';
+import { contentData as rawContentData } from './aboutData';
 import ContentBlock from '../components/blocks/ContentBlock';
 import H1 from '../components/text/H1';
 import PageContainer from '../components/containers/PageContainer';
