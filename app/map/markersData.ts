@@ -11,7 +11,8 @@ export const markers: Marker[] = [
     id: '1',
     position: { lat: 46.08898824178309, lng: 19.646583762456302 },
     title: 'Ilona str.',
-    description: 'Ilona STR je osnovana 2022. godine.',
+    description:
+      'Ilona STR je osnovana 2022. godine. Ilona STR je osnovana 2022. godine. Ilona STR je osnovana 2022. godine. Ilona STR je osnovana 2022. godine.',
   },
   {
     id: '2',

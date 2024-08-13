@@ -1,10 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  AdvancedMarker,
-  InfoWindow,
-  MapCameraChangedEvent,
-  useMap,
-} from '@vis.gl/react-google-maps';
+import { AdvancedMarker, InfoWindow, useMap } from '@vis.gl/react-google-maps';
 import BlockButton from '../components/buttons/BlockButton';
 import { markers, markers2 } from './markersData';
 
@@ -56,11 +51,16 @@ const MapMarkers: React.FC<MapMarkersProps> = ({ setCenter, setZoom, center, zoo
       setCenter(newCenter);
       setZoom(newZoom);
 
-      map.setCenter(newCenter);
-      map.setZoom(newZoom);
-      map.panTo(newCenter);
+      // Apply the map center and zoom changes with a delay
+      const timeoutId = setTimeout(() => {
+        if (map) {
+          map.panTo(newCenter); // Use panTo to animate the center change
+          map.setZoom(newZoom); // Set zoom level immediately
+        }
+      }, 300); // Adjust the delay (in milliseconds) as needed
 
-      console.log('Map centered and zoomed to fit all markers');
+      // Clean up the timeout if the component unmounts or activeMarkers changes
+      return () => clearTimeout(timeoutId);
     }
   }, [activeMarkers, map, setCenter, setZoom]);
 
@@ -102,16 +102,21 @@ const MapMarkers: React.FC<MapMarkersProps> = ({ setCenter, setZoom, center, zoo
   return (
     <>
       {activeMarkers.map((marker) => (
-        <React.Fragment key={marker.id}>
+        <div key={marker.id} className='w-full'>
           <AdvancedMarker
             position={marker.position}
             title={marker.title}
             onClick={() => handleMarkerClick(marker)}
+            className='w-full'
           />
           {activeMarker &&
             activeMarker.position.lat === marker.position.lat &&
             activeMarker.position.lng === marker.position.lng && (
-              <InfoWindow position={marker.position} onCloseClick={() => setActiveMarker(null)}>
+              <InfoWindow
+                position={marker.position}
+                onCloseClick={() => setActiveMarker(null)}
+                className='w-full'
+              >
                 <div className='flex flex-col gap-3 w-full'>
                   <BlockButton
                     onClick={() => handleNavigateToMarker(marker.position)}
@@ -123,13 +128,13 @@ const MapMarkers: React.FC<MapMarkersProps> = ({ setCenter, setZoom, center, zoo
                 </div>
               </InfoWindow>
             )}
-        </React.Fragment>
+        </div>
       ))}
-      <BlockButton
+      {/* <BlockButton
         onClick={() => setActiveMarkers(markers2)}
-        className='absolute bottom-0'
+        className='absolute top-0'
         text='Promeni'
-      />
+      /> */}
     </>
   );
 };

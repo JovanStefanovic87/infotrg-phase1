@@ -1,14 +1,8 @@
-.customMarkerLabel {
-  background-color: white;
-  border: 1px solid black;
-  padding: 2px 5px;
-  border-radius: 3px;
-  font-size: 24px;
-  position: absolute;
-  white-space: nowrap;
+.mapWrapper {
+  position: relative;
 }
 
 .mapContainer {
-  height: 50vh;
-  position: relative;
+  width: 100%;
+  height: 60vh;
 }
